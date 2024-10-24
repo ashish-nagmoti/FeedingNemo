@@ -9,6 +9,8 @@
 </head>
 
 <body class="bg-blue-50 flex items-center justify-center min-h-screen">
+    
+    
     <div class="bg-white shadow-lg rounded-lg p-6 max-w-md w-full text-center">
         <h1 class="text-3xl font-bold text-blue-600 mb-6">Feeding Nemo Control</h1>
 
@@ -25,6 +27,11 @@
             <button id="schedule-btn" class="bg-green-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300 ease-in-out w-full">
                 Schedule Feeding
             </button>
+            <div class="mt-4">
+                <a href="{% url 'feeding_history' %}" class="bg-gray-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-600 transition duration-300 ease-in-out">
+                    View Feeding History
+                </a>
+            </div>
         </div>
     </div>
 
@@ -56,6 +63,7 @@
                 .then(data => alert(data.message));
         });
     </script>
+   
 </body>
 
 </html>

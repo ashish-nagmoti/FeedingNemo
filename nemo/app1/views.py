@@ -4,13 +4,17 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
 import json
+from .models import FeedingEvent  # Import the FeedingEvent model
 
 # ESP32 device information (replace with actual details)
-ESP32_IP = '192.168.27.170'  # Update with your ESP32 IP
+ESP32_IP = '192.168.236.170'  # Update with your ESP32 IP
 ESP32_FEED_ENDPOINT = f'http://{ESP32_IP}/feed'
 
 # Home view to render the HTML page
 def home(request):
+    return render(request, 'login.html')
+
+def asd(request):
     return render(request, 'index.html')
 
 # Feed Now View
@@ -22,7 +26,14 @@ def feed_now(request):
             response = requests.get(ESP32_FEED_ENDPOINT)
             print(response)
             if response.status_code == 200:
-                return JsonResponse({'message': 'Feeding now!'}, status=200)
+                # Log the feeding event
+                duration = 10  # Example duration in seconds
+                amount = 5.0  # Example amount in grams
+
+                feeding_event = FeedingEvent(duration=duration, amount=amount)
+                feeding_event.save()
+
+                return JsonResponse({'message': 'Feeding now!', 'duration': duration, 'amount': amount}, status=200)
             else:
                 return JsonResponse({'message': 'Failed to feed. Try again!'}, status=500)
         except requests.exceptions.RequestException as e:
@@ -51,3 +62,8 @@ def schedule_feeding(request):
 
         except Exception as e:
             return JsonResponse({'message': f'Error scheduling feed: {e}'}, status=500)
+            
+def feeding_history(request):
+    # Get all feeding events from the database
+    feeding_events = FeedingEvent.objects.all().order_by('-timestamp')  # Newest first
+    return render(request, 'feeding_history.html', {'feeding_events': feeding_events})

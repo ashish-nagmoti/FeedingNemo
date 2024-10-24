@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feeding History - Feeding Nemo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-blue-50 flex items-center justify-center min-h-screen">
+    <div class="bg-white shadow-lg rounded-lg p-6 max-w-2xl w-full">
+        <h1 class="text-3xl font-bold text-blue-600 mb-6 text-center">Feeding History</h1>
+
+        <table class="min-w-full bg-white border border-gray-300">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="py-2 px-4 border-b">Timestamp</th>
+                    <th class="py-2 px-4 border-b">Duration (s)</th>
+                    <th class="py-2 px-4 border-b">Amount (g)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in feeding_events %}
+                <tr>
+                    <td class="py-2 px-4 border-b">{{ event.timestamp }}</td>
+                    <td class="py-2 px-4 border-b">{{ event.duration }}</td>
+                    <td class="py-2 px-4 border-b">{{ event.amount }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3" class="py-2 px-4 border-b text-center">No feeding events recorded.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="mt-4">
+            <a href="{% url 'index' %}" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300 ease-in-out">
+                Back to Control Panel
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

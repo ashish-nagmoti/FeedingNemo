@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Feeding Nemo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-blue-50 flex items-center justify-center min-h-screen">
+    <div class="bg-white shadow-lg rounded-lg p-6 max-w-md w-full text-center">
+        <h1 class="text-3xl font-bold text-blue-600 mb-6">Login to Feeding Nemo</h1>
+
+        <form id="login-form">
+            <!-- Username Field -->
+            <div class="mb-4">
+                <label for="username" class="block text-sm font-medium text-gray-600 mb-2">Username:</label>
+                <input type="text" id="username" name="username" class="border border-gray-300 p-2 rounded-lg w-full focus:ring-blue-500 focus:border-blue-500" required>
+            </div>
+
+            <!-- Password Field -->
+            <div class="mb-6">
+                <label for="password" class="block text-sm font-medium text-gray-600 mb-2">Password:</label>
+                <input type="password" id="password" name="password" class="border border-gray-300 p-2 rounded-lg w-full focus:ring-blue-500 focus:border-blue-500" required>
+            </div>
+
+            <!-- Login Button -->
+            <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300 ease-in-out w-full">
+                Login
+            </button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent the form from submitting the traditional way
+
+            // You can add your own validation or authentication logic here.
+
+            // After successful login, redirect to index.html
+            window.location.href = 'asd';
+        });
+    </script>
+</body>
+
+</html>
